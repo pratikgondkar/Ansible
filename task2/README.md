@@ -147,7 +147,3 @@ ansible server3 -i ansible-inventry -b -m service -a "name=nginx state=restarted
 ## Website3 = Jayanth
 ![App Screenshot](https://github.com/Kiran-dehlikar/test/assets/104997588/3d5b8bea-07c4-43c2-9fdd-70089a62a838)
 
-
-## Authors
-
-- [Kiran Dehlikar](https://github.com/Kiran-dehlikar)
