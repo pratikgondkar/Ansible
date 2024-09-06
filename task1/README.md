@@ -121,6 +121,4 @@ ansible server3 -m shell -a "getent group"
 ![App Screenshot](https://github.com/Kiran-dehlikar/test/assets/104997588/307e0605-3cbd-4038-a548-a469a2154c01)
 
 ![App Screenshot](https://github.com/Kiran-dehlikar/test/assets/104997588/a9054efe-5398-409c-98b5-c43e17253594)
-## Authors
 
-- [Kiran Dehlikar](https://github.com/Kiran-dehlikar)
