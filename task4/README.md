@@ -42,6 +42,3 @@ ansible-playbook -i ansible-inventry -b System_Manager/tests/system_manager.yml
 
 ![App Screenshot](https://github.com/Kiran-dehlikar/test/assets/104997588/b14328f8-f9e3-470a-8b4b-d7a6fca12f2f)
 
-## Authors
-
-- [Kiran Dehlikar](https://github.com/Kiran-dehlikar)
