@@ -1,0 +1,6 @@
+---
+# defaults file for nginx_install
+NginxConfigLocation: /etc/nginx/sites-available
+NginxConfigLink: /etc/nginx/sites-enabled
+NginxWebsiteLocation: /var/www/website
+PathToTemplates: /home/opstree/devops-ninja/Ansible/Assignment05/haproxy/templates

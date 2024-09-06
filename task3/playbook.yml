@@ -1,0 +1,15 @@
+---
+- name: SSH into EC2 instance
+  hosts: localhost
+  gather_facts: false
+  tasks:
+    - name: Wait for SSH to be available
+      wait_for:
+        host: "{{ ec2_public_ip }}"
+        port: 22
+        delay: 10
+        timeout: 600
+
+    - name: SSH into EC2 instance
+      command: ssh -i /path/to/your/private/key.pem ec2-user@{{ ec2_public_ip }}
+      delegate_to: localhost

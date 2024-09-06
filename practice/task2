@@ -1,0 +1,6 @@
+Complete all the below tasks using ansible modules:
+create a user and add it to a group named ninja
+create a directory named ninja
+install nginx
+copy custom index.html file
+restart nginx service

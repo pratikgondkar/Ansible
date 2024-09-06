@@ -1,0 +1,7 @@
+---
+- name: Manage users
+  user:
+    name: "{{ item.name }}"
+    shell: "{{ item.shell }}"
+    state: "{{ item.state }}"
+  with_items: "{{ users_to_manage }}"

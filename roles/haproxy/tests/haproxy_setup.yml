@@ -1,0 +1,6 @@
+---
+- hosts: server3
+  become: true
+  remote_user: root
+  roles:
+    - haproxy

@@ -1,0 +1,8 @@
+#web02 ansible_host=192.168.1.43 ansible_user=ubuntu ansible_ssh_private_key_file=/home/opstree/Downloads/server2.pem
+#server1 ansible_host=192.168.1.37 ansible_user=ubuntu ansible_ssh_private_key_file=/home/opstree/Downloads/server3.pem
+server3 ansible_host=192.168.1.38 ansible_user=ubuntu ansible_ssh_private_key_file=/home/opstree/Downloads/server3.pem
+
+localhost
+
+[server]
+

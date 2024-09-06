@@ -1,0 +1,7 @@
+---
+# handlers file for ninja24
+    
+- name: Restart Nginx
+  service:
+    name: nginx
+    state: restarted

@@ -1,0 +1,3 @@
+Create an inventory file and try to run ping module to test the connection between them
+In first scenario use default location of inventory file
+In second scenario use a custom inventory file

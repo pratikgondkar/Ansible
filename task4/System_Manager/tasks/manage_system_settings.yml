@@ -1,0 +1,6 @@
+---
+- name: Manage system settings
+  sysctl:
+    name: "{{ item.key }}"
+    value: "{{ item.value }}"
+  with_items: "{{ system_settings | dict2items }}"

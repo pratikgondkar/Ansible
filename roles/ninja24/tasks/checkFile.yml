@@ -1,0 +1,6 @@
+---
+- name: Check/Create ~/xyz file
+  file:
+    path: "{{ ansible_env.HOME }}/xyz"
+    state: touch
+  become: yes

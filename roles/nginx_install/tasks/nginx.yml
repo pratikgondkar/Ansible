@@ -1,0 +1,43 @@
+---
+    
+- name: Create directory for our website
+  file: 
+    path: "{{ NginxWebsiteLocation }}/{{ item }}"
+    state: directory
+  loop:
+    - site1
+    - site2    
+
+- name: Install Nginx
+  apt:
+    update_cache: yes
+    name: "nginx={{ nginx_version }}"
+    state: present
+
+- name: Create website's configuration
+  template:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+  loop:
+    - { src: "{{ PathToTemplates }}/website1.conf.j2", dest: "{{ NginxConfigLocation }}/site1" }
+    - { src: "{{ PathToTemplates }}/website2.conf.j2", dest: "{{ NginxConfigLocation }}/site2" }
+  notify: Restart Nginx
+
+- name: Create symlink to sites-enabled
+  file:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    state: link                                                             
+  loop:
+    - { src: "{{ NginxConfigLocation }}/site1", dest: "{{ NginxConfigLink }}/site1" }
+    - { src: "{{ NginxConfigLocation }}/site2", dest: "{{ NginxConfigLink }}/site2" }
+  notify: Restart Nginx
+
+- name: Create website 
+  template:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+  loop:
+    - { src: "{{ PathToTemplates }}/website1.html.j2", dest: "{{ NginxWebsiteLocation }}/site1/index.html" }
+    - { src: "{{ PathToTemplates }}/website2.html.j2", dest: "{{ NginxWebsiteLocation }}/site2/index.html" }
+  notify: Restart Nginx

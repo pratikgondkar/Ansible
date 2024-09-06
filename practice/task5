@@ -1,0 +1,14 @@
+Complete the following task with playbook advance on both debian and redhat servers
+Task 1
+Install nginx.
+Change the HTML page using template and print the node alias name in that file
+Change the number of worker in con figuration file.
+Change the description on service file saying "i am learning nginx.."
+Task2
+Add  5 user from your team.
+Assign different password to each user
+The list of user should be passed from a variable file.
+Task3
+Check whether ~/xyz file is present or not.
+If not created then it should create a file.
+Add all the task to master playbook with variable file.

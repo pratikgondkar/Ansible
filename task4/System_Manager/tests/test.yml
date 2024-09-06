@@ -1,0 +1,27 @@
+---
+- hosts: localhost
+  remote_user: root
+  roles:
+    - System_Manager
+  vars:
+    software_list:
+      - vim
+      - htop
+
+    users:
+      - name: john
+        state: present
+      - name: jane
+        state: present
+
+    git_repositories:
+      - repo: https://github.com/example/repo1.git
+        dest: /path/to/repo1
+
+    folder_structures:
+      - path: /path/to/folder1
+      - path: /path/to/folder2
+
+    authorized_keys:
+      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAA...
+      - ssh-rsa BBBB3NzaC1yc2EAAAADAQABAA...

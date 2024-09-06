@@ -1,0 +1,9 @@
+---
+- name: Master task using roles
+  hosts: server3
+  become: true
+  vars_files:
+    - /home/opstree/codekiran/ninja24/vars/encrypted_vars.yml
+  roles:
+    - ninja24
+  

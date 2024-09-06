@@ -1,0 +1,81 @@
+HAproxy is an open-source software solution that provides high availability, load balancing, and proxying for TCP and HTTP-based applications.
+
+Advantage :
+
+Open Source and On-Premises: This provides more flexibility for users who need to manage their own infrastructure.
+
+Fine-Grained Control: HAProxy allows for more granular control over load balancing configurations. It supports complex routing rules, SSL termination, and various load balancing algorithms.
+
+Cost Considerations: If you have a significant amount of traffic, using a cloud-based load balancer may incur higher costs. 
+
+Customization: HAProxy can be customized based on specific requirements
+
+Why we need HAProxy
+Load Balancing:
+High Availability:
+Scalability:
+SSL Termination:
+Proxying and Reverse Proxy:
+Advanced Routing and Rewriting:
+
+
+Dependencies
+
+$ sudo apt install --no-install-recommends software-properties-common
+
+$ sudo add-apt-repository ppa:vbernat/haproxy-2.4 -y
+
+$ sudo apt install haproxy=2.4.\*
+
+$ haproxy -v    
+
+$ sudo apt update && sudo apt upgrade -y
+
+
+==========================================================================================
+apt install haproxy -y
+
+apt install nginx -y
+
+cp -v /etc/haproxy/haproxy.cfg /etc/haproxy/haproxy.cfg.bkp
+
+/etc/haproxy/haproxy.cfg
+
+#    log /dev/log local0
+#    log /dev/log local1 notice
+    log         127.0.0.1 local2
+    chroot /var/lib/haproxy
+    stats socket /run/haproxy/admin.sock mode 660 level admin
+    stats timeout 30s
+    user haproxy
+    group haproxy
+    daemon
+
+defaults
+    log     global
+    mode    http
+    option  httplog
+    option  dontlognull
+    timeout connect 5000
+    timeout client  50000
+    timeout server  50000
+
+frontend myfrontend
+    bind *:80
+    mode http
+    default_backend mybackend
+
+backend mybackend
+    mode http
+    server webserver1 3.6.10.12:8080 check
+
+### STATS CONFIGURATION ####
+frontend stats
+    bind *:8404
+    stats enable
+    stats uri /haproxy_stats
+    stats refresh 10s
+	
+	
+systemctl restart haproxy
+

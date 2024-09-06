@@ -1,0 +1,8 @@
+---
+# tasks file for haproxy
+
+- name: Install Nginx
+  include_tasks: nginx.yml
+
+- name: Install Haproxy
+  include_tasks: haproxy.yml

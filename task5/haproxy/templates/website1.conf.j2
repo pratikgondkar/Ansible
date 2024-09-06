@@ -1,0 +1,13 @@
+# website1 configuration
+
+server {
+    listen 8081;
+    server_name "{{inventory_hostname }}";
+
+    location / {
+        # Configuration for website1
+        root /var/www/website/site1;
+        index index.html site1.html site2.html site3.html;
+
+    }
+}

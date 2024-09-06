@@ -1,0 +1,58 @@
+---
+- name: Deployment of Spring3HibernateApp 
+  hosts: aws
+  become: yes
+  tasks:
+
+    - name: Install pakages
+      apt:
+        update_cache: yes
+        name: 
+          - mysql-server
+          - openjdk-11-jdk
+          - maven
+          - tomcat9
+          - tomcat9-admin
+        state: present
+
+    - name: Create directory for repo
+      file: 
+        dest: /opt/spring3hibernate
+        state: directory
+
+    - name: Cloning repo https://github.com/opstree/spring3hibernate
+      git:
+        clone: true
+        repo: https://github.com/opstree/spring3hibernate.git
+        dest: /opt/spring3hibernate
+
+    - name: Generating war file
+      command:
+        cmd: "mvn clean install"
+        chdir: /opt/spring3hibernate
+
+    - name: Add roles to tomcat-users.xml
+      lineinfile:
+        path: /etc/tomcat9/tomcat-users.xml
+        line: "{{ item }}"
+        insertbefore: </tomcat-users>
+      with_items:
+        - '<role rolename="admin-gui"/>'
+        - '<role rolename="manager-gui"/>'
+        - '<user username="tomcat" password="pass" roles="admin-gui,manager-gui"/>'
+      notify: Restart tomcat9
+
+    - name: Copying war file to tomcat webapp directory
+      copy:
+        src: /opt/spring3hibernate/target/Spring3HibernateApp.war
+        dest: /var/lib/tomcat9/webapps
+        remote_src: yes
+      notify: Restart tomcat9
+
+  handlers:
+    - name: Restart tomcat9
+      service:
+        name: tomcat9
+        state: restarted
+
+     

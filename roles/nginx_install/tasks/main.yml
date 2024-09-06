@@ -1,0 +1,4 @@
+---
+# tasks file for nginx_install
+- name: Install Nginx
+  include_tasks: nginx.yml

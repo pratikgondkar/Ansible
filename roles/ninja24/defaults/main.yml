@@ -1,0 +1,13 @@
+---
+# defaults file for ninja24
+users_list:
+  - name: user1
+    password: redhat
+  - name: user2
+    password: redhat
+  - name: user3
+    password: redhat
+  - name: user4
+    password: redhat
+  - name: user5
+    password: redhat

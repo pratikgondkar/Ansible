@@ -1,0 +1,12 @@
+---
+# handlers file for haproxy
+    
+- name: Restart Nginx
+  service:
+    name: nginx
+    state: restarted
+
+- name: Restart Haproxy
+  service:
+    name: haproxy
+    state: restarted

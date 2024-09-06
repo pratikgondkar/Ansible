@@ -1,0 +1,10 @@
+---
+- name: Adding 5 users and set passwords
+  user:
+    name: "{{ item.name }}"
+    password: "{{ item.password }}" # "{{ item.password | password_hash('sha512') }}"
+    state: present
+  with_items: "{{ users_list }}"
+# when: users_list is defined and users_list is iterable
+  become: yes
+  

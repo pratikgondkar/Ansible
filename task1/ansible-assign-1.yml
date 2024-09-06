@@ -1,0 +1,38 @@
+#Add NinjaTeam (Simulate Group) ex: team1
+ansible all -i ansible-inventry -m group -a "name=team1" -b
+
+#Add a User (Simulate) under a team ex: Nitish added to team1 Ensure below constraints are met:
+#A user should have read,write, execute access to home directory
+#All the users of same team should have read and excute access to home directory of fellow team members.
+ansible all -i ansible-inventry -m user -a "name=nitish group=team1 shell=/bin/bash state=present" -b
+ansible all -i ansible-inventry -m user -a "name=ritesh group=team1 shell=/bin/bash state=present" -b
+
+#In home directory of every user there should be 2 shared directories
+#Team: Same team members will have full access
+ansible all -i ansible-inventry -m file -a "path=/home/nitish/Team mode=g+rwx group=team1 state=directory" -b
+ansible all -i ansible-inventry -m file -a "path=/home/ritesh/Team mode=g+rwx group=team1 state=directory" -b
+
+#Ninja: All ninja's will have full access
+ansible all -i ansible-inventry -m file -a "path=/home/nitish/Ninja mode=a+rwx state=directory" -b
+ansible all -i ansible-inventry -m file -a "path=/home/ritesh/Ninja mode=a+rwx state=directory" -b
+
+#================================================================================================#
+#Additional features
+# Change user shell
+ansible all -i ansible-inventry -m user -a "name=nitish shell=/bin/sh" -b
+ansible all -i ansible-inventry -m user -a "name=ritesh shell=/bin/sh" -b
+
+#Change user password
+ansible all -i ansible-inventry -m shell -a "usermod --password \$(openssl passwd -6 'redhat') nitish" -b
+ansible all -i ansible-inventry -m user -a "name=nitish update_password=always password={{ newpassword|password_hash('sha512') }}" -b --extra-vars "newpassword=redhat"
+
+#Delete user
+ansible all -i ansible-inventry -m user -a "name=nitish remove=yes state=absent" -b
+ansible all -i ansible-inventry -m user -a "name=ritesh remove=yes state=absent" -b
+
+#Delete Group
+ansible all -i ansible-inventry -m group -a "name=team1 state=absent" -b
+
+#List user or Team
+ansible all -m shell -a "getent passwd"
+ansible all -m shell -a "getent group"

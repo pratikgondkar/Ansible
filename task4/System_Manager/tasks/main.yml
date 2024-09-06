@@ -1,0 +1,8 @@
+---
+# tasks file for System_Manager
+
+- include_tasks: install_software.yml
+- include_tasks: manage_users.yml
+- include_tasks: manage_git_repositories.yml
+- include_tasks: create_folder_structures.yml
+#- include_tasks: manage_system_settings.yml

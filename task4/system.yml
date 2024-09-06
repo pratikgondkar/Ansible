@@ -1,0 +1,24 @@
+---
+- name: Manage different system settings with variables
+  hosts: your_target_hosts
+  become: yes  # Run tasks with sudo privileges
+  vars_files:
+    - system_settings:
+        kernel.sysrq: 1
+        net.core.somaxconn: 1024
+  tasks:
+    - name: Set kernel.sysrq
+      sysctl:
+        name: "{{ item.key }}"
+        value: "{{ item.value }}"
+        sysctl_set: yes
+      become: yes
+      with_dict: "{{ system_settings }}"
+
+    - name: Set net.core.somaxconn
+      sysctl:
+        name: "{{ item.key }}"
+        value: "{{ item.value }}"
+        sysctl_set: yes
+      become: yes
+      with_dict: "{{ system_settings }}"

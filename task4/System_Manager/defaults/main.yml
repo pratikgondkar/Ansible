@@ -1,0 +1,8 @@
+---
+
+# defaults file for system_manager
+software_to_install: []
+users_to_manage: []
+git_repositories: []
+folder_structures: []
+system_settings: {}

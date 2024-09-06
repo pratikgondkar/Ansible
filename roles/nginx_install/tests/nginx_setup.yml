@@ -1,0 +1,6 @@
+---
+- hosts: aws
+  become: true
+  remote_user: root
+  roles:
+    - nginx_install

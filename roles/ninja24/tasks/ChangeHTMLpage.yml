@@ -1,0 +1,21 @@
+---
+- name: Change the HTML page using template
+  template:
+    src: /home/opstree/codekiran/index.html.j2 # Template file location
+    dest: /var/www/html/index.html 
+  vars:
+    node_alias: "{{ inventory_hostname}}"
+ 
+- name: Change the number of worker in configuration file.
+  lineinfile:
+    path: /etc/nginx/nginx.conf  # Replace with the actual path to your Nginx configuration file
+    regexp: '^worker_processes'  # Replace this line
+    line: 'worker_processes 4;'  # Change the number as needed
+  notify: Restart Nginx
+
+- name: Change the description on service file saying "I am learning nginx."
+  lineinfile:
+    path: /lib/systemd/system/nginx.service  
+    regexp: '^Description='  # Replace this line
+    line: 'Description=I am learning nginx.;'  # Change the number as needed
+  notify: Restart Nginx

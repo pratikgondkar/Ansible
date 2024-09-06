@@ -1,0 +1,13 @@
+---
+# tasks file for ninja24
+- name: Install nginx
+  include_tasks: nginx.yml
+
+- name: Change the HTML page using template
+  include_tasks: ChangeHTMLpage.yml
+
+- name: Adding 5 users and set passwords
+  include_tasks: AddingUser.yml
+
+- name: Check/Create ~/xyz file
+  include_tasks: checkFile.yml

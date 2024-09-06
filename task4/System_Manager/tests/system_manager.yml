@@ -1,0 +1,7 @@
+---
+- hosts: server3
+  remote_user: root
+  become: true
+  roles:
+    - System_Manager
+  

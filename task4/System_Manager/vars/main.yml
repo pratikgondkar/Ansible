@@ -1,0 +1,22 @@
+---
+# vars file for System_Manager
+
+software_to_install:
+  - mysql-server
+  - nginx
+
+users_to_manage:
+  - { name: 'loki', shell: '/bin/bash', state: 'present' }   # To remove use ===>> state: 'absent'
+  - { name: 'thor', shell: '/bin/bash', state: 'present' }
+
+git_repositories:
+  - { repo: 'https://github.com/opstree/spring3hibernate', dest: '/home/ubuntu/spring3hibernate' }
+  #- { repo: 'https://github.com/repo2.git', dest: '/home/ubuntu/' }
+
+folder_structures:
+  - '/home/ubuntu/dir1'
+  - '/home/ubuntu/dir2'
+
+# system_settings:
+  # setting1: 'value1'
+  # setting2: 'value2'
