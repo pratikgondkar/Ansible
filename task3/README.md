@@ -84,6 +84,3 @@ ansible-playbook -i ansible-inventry application.yml
 ### Tomcat Webapp page
 ![App Screenshot](https://github.com/Kiran-dehlikar/test/assets/104997588/5ed2b9a6-6f7f-4e03-9b3c-63baa44be4de)
 
-## Authors
-
-- [Kiran Dehlikar](https://github.com/Kiran-dehlikar)
